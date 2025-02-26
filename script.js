@@ -8,6 +8,30 @@ function convertToRoman(num) {
       5:['V', 5], 
       6:['I', 1]
     };
+	let roman = "";
+
+    // Extended subtraction rules to handle numerals like CM, CD, XC, etc.
+    const extendedSymbols = {
+        900: "CM", 400: "CD",
+        90: "XC", 40: "XL",
+        9: "IX", 4: "IV"
+    };
+
+    for (let key in extendedSymbols) {
+        while (num >= key) {
+            roman += extendedSymbols[key];
+            num -= key;
+        }
+    }
+
+    for (let i = 0; i <= 6; i++) {
+        while (num >= obj[i][1]) {
+            roman += obj[i][0];
+            num -= obj[i][1];
+        }
+    }
+
+    return roman;
 
   //your code here
 
